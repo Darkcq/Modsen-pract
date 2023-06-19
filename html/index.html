@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang = "ru">
+<head>
+    <meta charset='utf-8'>
+    <title>QuizZz</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <link rel='stylesheet' href='..//css/style.css'>
+</head>
+<body>
+    <div class = "quiz">
+
+        <div class = "header">
+            <h2 class = "question"></h2>
+            <div class="totalquests"></div>
+        </div>
+
+        <div class = "line"></div> 
+
+        <div class = "mainbody">
+            <ul class = "answers_list">
+                <li class = "btn"></li>
+                <li class = "btn"></li>
+                <li class = "btn"></li>
+                <li class = "btn"></li>
+            </ul>
+        </div>
+
+        <div class = "bottom">
+            <button class ="next-btn btn">Next</button>
+        </div>
+
+    </div>
+
+    <div class="score__window hidden">
+        <h2 class = "score__info"></h2>
+        <button class = "try__again" onclick="location.reload()">Try again</button>
+    </div> 
+
+
+<script src = "../js/quizs.js"></script>
+<script src = "../js/main.js"></script>   
+</body>
+</html>
