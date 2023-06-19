@@ -9,26 +9,26 @@ let count = 0,
     nextbtn.addEventListener('click', nextQuestion);
 
 function showQuestions(index) {
-    const title = document.querySelector('.question');
+    const qtitle = document.querySelector('.question');
     const answers = document.querySelector('.answers_list');
-    const total = document.querySelector('.totalquests');
+    const totalamount = document.querySelector('.totalquests');
 
-    title.innerHTML = `${quizs[index].question}`;
+    qtitle.innerHTML = `${quizs[index].question}`;
     answers.innerHTML = '';
 
     quizs[index].options.forEach(item => {
-        const text = `<li class="btn">${item}</li>`;
+        const text = `<li class="answer">${item}</li>`;
         answers.insertAdjacentHTML("beforeend", text);
     });
 
-    const options = answers.querySelectorAll('.btn');
+    const options = answers.querySelectorAll('.answer');
     options.forEach(item => item.setAttribute("onclick", "optionSelected(this)"));
 
-    total.innerHTML = `${index + 1} of ${quizs.length}`;
+    totalamount.innerHTML = `${index + 1} of ${quizs.length}`;
 }
 
 function nextQuestion() {
-    const option = document.querySelector('.btn');
+    const option = document.querySelector('.answer');
     const score_info = document.querySelector('.score__info');
 
     if ((count + 1) == quizs.length && option.classList.contains("disabled")) {
@@ -43,14 +43,14 @@ function nextQuestion() {
         showQuestions(count);
     }
     else {
-        alert("Для начала необходимо выбрать вариант ответа!")
+        alert("First you need to choose the answer option!")
     }
 }
 
 function optionSelected(choice) {
     const userAnswer = choice.textContent,
         correctAnswer = quizs[count].answer,
-        options = document.querySelectorAll(".btn");
+        options = document.querySelectorAll(".answer");
 
     if (userAnswer == correctAnswer) {
         userscore++;
