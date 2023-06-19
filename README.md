@@ -21,10 +21,6 @@
 - Необходимо применить все лучшие практики написания чистого, читаемого кода.
 
 
-## Пример графического представления: 
-
-![Example](./example.jpg)
-
 ## Примеры вопросов для заполнения: 
 1. How many planets are in the solar system? (8, 9, 10)
 2. What is the freezing point of water? (0, -5, -6)
