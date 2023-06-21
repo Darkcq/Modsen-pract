@@ -1,22 +1,19 @@
-const quiz = document.querySelector('.quiz'),
-      nextbtn = document.querySelector('.next-btn'),
-      score_window = document.querySelector('.score__window');
+const quiz = document.querySelector('.quiz');
+const next_btn = document.querySelector('.next_btn');
+const quiz_score = document.querySelector('.quiz_score');
 
-let count = 0,
-    userscore = 0;
-
-    showQuestions(count);
-    nextbtn.addEventListener('click', nextQuestion);
+let question_counter = 0;
+let user_score = 0;
 
 function showQuestions(index) {
-    const qtitle = document.querySelector('.question');
+    const question_title = document.querySelector('.question_title');
     const answers = document.querySelector('.answers_list');
-    const totalamount = document.querySelector('.totalquests');
+    const total_amount = document.querySelector('.quests_amount');
 
-    qtitle.innerHTML = `${quizs[index].question}`;
+    question_title.innerHTML = `${quizQuestions[index].question}`;
     answers.innerHTML = '';
 
-    quizs[index].options.forEach(item => {
+    quizQuestions[index].options.forEach(item => {
         const text = `<li class="answer">${item}</li>`;
         answers.insertAdjacentHTML("beforeend", text);
     });
@@ -24,23 +21,23 @@ function showQuestions(index) {
     const options = answers.querySelectorAll('.answer');
     options.forEach(item => item.setAttribute("onclick", "optionSelected(this)"));
 
-    totalamount.innerHTML = `${index + 1} of ${quizs.length}`;
+    total_amount.innerHTML = `${index + 1} of ${quizQuestions.length}`;
 }
 
 function nextQuestion() {
     const option = document.querySelector('.answer');
-    const score_info = document.querySelector('.score__info');
+    const score_info = document.querySelector('.score_info');
 
-    if ((count + 1) == quizs.length && option.classList.contains("disabled")) {
-        score_window.classList.remove('hidden');
+    if (question_counter === quizQuestions.length - 1 && option.classList.contains("disabled")) {
+        quiz_score.classList.remove('hidden');
         quiz.classList.add('hidden');
-        score_info.innerHTML = `Correct answers: ${userscore} of ${quizs.length}`;
+        score_info.innerHTML = `Correct answers: ${user_score} of ${quizQuestions.length}`;
         return;
     }
 
     if (option.classList.contains("disabled")) {
-        count++;
-        showQuestions(count);
+        question_counter++;
+        showQuestions(question_counter);
     }
     else {
         alert("First you need to choose the answer option!")
@@ -48,14 +45,14 @@ function nextQuestion() {
 }
 
 function optionSelected(choice) {
-    const userAnswer = choice.textContent,
-        correctAnswer = quizs[count].answer,
-        options = document.querySelectorAll(".answer");
+    const userAnswer = choice.textContent;
+    const correctAnswer = quizQuestions[question_counter].answer;
+    const options = document.querySelectorAll(".answer");
 
-    if (userAnswer == correctAnswer) {
-        userscore++;
+    if (userAnswer === correctAnswer) {
+        user_score++;
         choice.classList.add("correct");
-        
+
     }
     else {
         choice.classList.add("incorrect");
@@ -63,3 +60,6 @@ function optionSelected(choice) {
 
     options.forEach(item => item.classList.add("disabled"));
 }
+
+showQuestions(question_counter);
+next_btn.addEventListener('click', nextQuestion);
